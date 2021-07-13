@@ -1,0 +1,20 @@
+<app-part-control-button
+    label="Cursor.Prev"
+    icon="arrow-left"
+    [action]="actionPrev"
+></app-part-control-button>
+
+<app-part-control-button
+    label="Cursor.Next"
+    icon="arrow-right"
+    [action]="actionNext"
+></app-part-control-button>
+
+<div class="splitter"></div>
+
+<app-part-control-select
+    label="Add NoteSet"
+    [items]="noteValueItems"
+    [defaulValue]="NoteValue.Quarter"
+    [action]="actionInsertNoteSet"
+></app-part-control-select>

@@ -1,0 +1,21 @@
+<sl-tooltip [content]="label">
+    <sl-button size="small" (click)="onClick()">
+        <sl-dropdown slot="suffix" (click)="$event.stopPropagation()">
+            <sl-icon-button
+                slot="trigger"
+                name="arrow-bar-down"
+            ></sl-icon-button>
+
+            <sl-menu>
+                <sl-menu-item
+                    *ngFor="let item of items"
+                    (click)="onSelect(item)"
+                >
+                    {{ item.label }}
+                </sl-menu-item>
+            </sl-menu>
+        </sl-dropdown>
+
+        {{ selected?.label }}
+    </sl-button>
+</sl-tooltip>

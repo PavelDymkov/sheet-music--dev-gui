@@ -1,11 +1,22 @@
-import { NgModule } from "@angular/core";
-
+import { CommonModule } from "@angular/common";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
+import { ShoelaceStyleAngularModule } from "shoelace-style-angular";
+import { PartControlButtonComponent } from "./part-controls/part-control-button/part-control-button.component";
+import { PartControlSelectComponent } from "./part-controls/part-control-select/part-control-select.component";
+import { PartControlsComponent } from "./part-controls/part-controls.component";
 import { PartViewComponent } from "./part-view/part-view.component";
 import { PartPageComponent } from "./part.component";
 import { PartRoutingModule } from "./part.routing";
 
 @NgModule({
-    imports: [PartRoutingModule],
-    declarations: [PartPageComponent, PartViewComponent],
+    imports: [CommonModule, PartRoutingModule, ShoelaceStyleAngularModule],
+    declarations: [
+        PartControlsComponent,
+        PartPageComponent,
+        PartViewComponent,
+        PartControlButtonComponent,
+        PartControlSelectComponent,
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PartPageModule {}

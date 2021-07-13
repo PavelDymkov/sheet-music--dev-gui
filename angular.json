@@ -43,7 +43,15 @@
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
-                        "assets": ["src/favicon.ico", "src/assets"],
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets",
+                            {
+                                "glob": "**/*.*",
+                                "input": "node_modules/@shoelace-style/shoelace/dist",
+                                "output": "/assets/shoelace"
+                            }
+                        ],
                         "styles": ["src/styles.css"],
                         "scripts": [],
                         "allowedCommonJsDependencies": ["sheet-music"]

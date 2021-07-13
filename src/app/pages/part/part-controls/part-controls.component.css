@@ -1,0 +1,16 @@
+:host {
+    flex: 1;
+    display: flex;
+    gap: var(--sl-spacing-small);
+    align-items: center;
+    padding: var(--sl-spacing-medium);
+    border-bottom: 1px solid var(--sl-color-gray-300);
+}
+
+.splitter {
+    height: calc(
+        100% + var(--sl-spacing-xx-small) + var(--sl-spacing-xx-small)
+    );
+    margin-left: var(--sl-spacing-small);
+    border-right: 1px solid var(--sl-color-gray-300);
+}

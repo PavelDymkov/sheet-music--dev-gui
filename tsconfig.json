@@ -19,7 +19,6 @@
         "lib": ["es2018", "dom"],
 
         "paths": {
-            "sheet-music": ["../sheet-music/package"],
             "sheet-music/*": ["../sheet-music/package/*"]
         }
     },
