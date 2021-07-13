@@ -1,0 +1,12 @@
+sl-form {
+    width: 200px;
+    padding: var(--sl-spacing-medium);
+    color: var(--color) !important;
+    text-align: start;
+    cursor: default;
+}
+
+.form-actions {
+    text-align: end;
+    margin-top: var(--sl-spacing-small);
+}

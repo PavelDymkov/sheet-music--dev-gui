@@ -1,13 +1,13 @@
 <app-part-control-button
     label="Cursor.Prev"
     icon="arrow-left"
-    [action]="actionPrev"
+    [action]="prev"
 ></app-part-control-button>
 
 <app-part-control-button
     label="Cursor.Next"
     icon="arrow-right"
-    [action]="actionNext"
+    [action]="next"
 ></app-part-control-button>
 
 <div class="splitter"></div>
@@ -16,5 +16,23 @@
     label="Add NoteSet"
     [items]="noteValueItems"
     [defaulValue]="NoteValue.Quarter"
-    [action]="actionInsertNoteSet"
+    [action]="insertNoteSet"
 ></app-part-control-select>
+
+<app-part-control-button
+    label="Remove"
+    icon="trash"
+    [action]="remove"
+></app-part-control-button>
+
+<div class="splitter"></div>
+
+<app-part-control-note
+    label="Insert Note"
+    [action]="insertNote"
+></app-part-control-note>
+
+<app-part-control-note
+    label="Remove Note"
+    [action]="removeNote"
+></app-part-control-note>

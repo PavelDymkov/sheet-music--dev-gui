@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
+import { Note } from "sheet-music/note";
 import { NoteValue } from "sheet-music/note-value";
 import { Part } from "sheet-music/part";
-
 import { PartService } from "src/app/services/part.service";
 import { PartControlSelectItem } from "./part-control-select/part-control-select.component";
 
@@ -15,7 +15,53 @@ export type PartControlAction = (payload?: any) => void;
 export class PartControlsComponent {
     readonly NoteValue = NoteValue;
 
-    readonly noteValueItems: PartControlSelectItem<NoteValue>[] = [
+    readonly noteValueItems = createNoteValueItems();
+
+    next = this.action(() => {
+        this.part.cursor.next();
+    });
+
+    prev = this.action(() => {
+        this.part.cursor.prev();
+    });
+
+    insertNoteSet = this.action((noteValue: NoteValue) => {
+        this.part.insertNoteSet(noteValue);
+    });
+
+    remove = this.action(() => {
+        this.part.remove();
+    });
+
+    insertNote = this.action((note: Note) => {
+        this.part.insertNote(note);
+    });
+
+    removeNote = this.action((note: Note) => {
+        this.part.removeNote(note);
+    });
+
+    get part(): Part {
+        return this.partService.part;
+    }
+
+    constructor(private partService: PartService) {}
+
+    private action(beforeAction: PartControlAction): PartControlAction {
+        return (payload?: any) => {
+            beforeAction(payload);
+
+            this.afterAction();
+        };
+    }
+
+    private afterAction(): void {
+        this.partService.update.next();
+    }
+}
+
+function createNoteValueItems(): PartControlSelectItem<NoteValue>[] {
+    return [
         {
             label: "Maxima",
             value: NoteValue.Maxima,
@@ -57,32 +103,4 @@ export class PartControlsComponent {
             value: NoteValue.SixtyFourth,
         },
     ];
-
-    actionNext: PartControlAction = () => {
-        this.part.cursor.next();
-
-        this.afterAction();
-    };
-
-    actionPrev: PartControlAction = () => {
-        this.part.cursor.prev();
-
-        this.afterAction();
-    };
-
-    actionInsertNoteSet: PartControlAction = (noteValue: NoteValue) => {
-        this.part.insertNoteSet(noteValue);
-
-        this.afterAction();
-    };
-
-    get part(): Part {
-        return this.partService.part;
-    }
-
-    constructor(private partService: PartService) {}
-
-    afterAction(): void {
-        this.partService.update.next();
-    }
 }

@@ -8,9 +8,7 @@
 }
 
 .splitter {
-    height: calc(
-        100% + var(--sl-spacing-xx-small) + var(--sl-spacing-xx-small)
-    );
-    margin-left: var(--sl-spacing-small);
+    height: calc(100% + 2 * var(--sl-spacing-x-small));
     border-right: 1px solid var(--sl-color-gray-300);
+    margin: 0 var(--sl-spacing-x-small);
 }

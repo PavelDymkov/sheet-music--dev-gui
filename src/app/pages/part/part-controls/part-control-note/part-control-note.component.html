@@ -1,0 +1,59 @@
+<sl-tooltip [content]="label">
+    <sl-button size="small" (click)="action(note)">
+        {{ note.noteName }}{{ note.octave }}
+        {{ formatAccidental(note.accidental) }}
+
+        <sl-dropdown
+            slot="suffix"
+            [(open)]="isOpen"
+            (show)="patchNoteForm()"
+            (click)="$event.stopPropagation()"
+        >
+            <sl-icon-button
+                slot="trigger"
+                name="arrow-bar-down"
+            ></sl-icon-button>
+
+            <sl-form [data]="noteForm" (submit)="setNote()">
+                <sl-select name="noteName" label="Note" hoist>
+                    <ng-container
+                        *ngTemplateOutlet="
+                            options;
+                            context: { $implicit: notes }
+                        "
+                    ></ng-container>
+                </sl-select>
+
+                <sl-select name="accidental" label="Accidental" hoist>
+                    <ng-container
+                        *ngTemplateOutlet="
+                            options;
+                            context: { $implicit: accidentals }
+                        "
+                    ></ng-container>
+                </sl-select>
+
+                <sl-select name="octave" label="Octave" hoist>
+                    <ng-container
+                        *ngTemplateOutlet="
+                            options;
+                            context: { $implicit: octaves }
+                        "
+                    ></ng-container>
+                </sl-select>
+
+                <sl-checkbox name="ghost">Ghost</sl-checkbox>
+
+                <div class="form-actions">
+                    <sl-button submit type="primary">Apply</sl-button>
+                </div>
+            </sl-form>
+        </sl-dropdown>
+    </sl-button>
+</sl-tooltip>
+
+<ng-template #options let-items>
+    <sl-menu-item *ngFor="let item of items" [value]="item">
+        {{ item }}
+    </sl-menu-item>
+</ng-template>
